@@ -29,6 +29,7 @@ for (const page of pages) {
 const home = await readFile(path.join(root, 'index.html'), 'utf8');
 const menu = await readFile(path.join(root, 'menu/index.html'), 'utf8');
 if(!home.includes('常に旬なヘアを提案しつつ、かつ丁寧な仕事を心がけています。')) errors.push('Requested concept statement missing');
+if(!home.includes('<dt>カラー</dt><dd>¥4,800〜</dd>')) errors.push('Home color price must be ¥4,800〜');
 for (const price of ['3,400','3,200','1,500','2,500','2,000','4,800','5,800','4,500','6,500','7,800','8,000','8,500','15,000','16,000','18,000','3,000','3,500','7,000','1,200']) if(!menu.includes(price)) errors.push(`Missing menu price ${price}`);
 if(errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log('All required pages, local links, assets, reservation links, and menu prices passed.');
